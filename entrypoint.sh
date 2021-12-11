@@ -18,4 +18,4 @@ if [ $? != 0 ]; then
   exit 1
 fi
 
-echo ::set-output name=result::`cat result.json`
+echo ::set-output name=result::`cat result.json | base64 -w 0`
