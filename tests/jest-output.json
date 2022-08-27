@@ -1,0 +1,46 @@
+{
+  "testResults": [
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "First test describe"
+          ],
+          "fullName": "First test describe first test",
+          "title": "first test",
+          "status": "passed"
+        },
+        {
+          "ancestorTitles": [
+            "First test describe"
+          ],
+          "fullName": "First test describe second test",
+          "title": "second test",
+          "status": "passed"
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "Second test describe"
+          ],
+          "fullName": "Second test describe first test",
+          "title": "first test",
+          "status": "passed"
+        },
+        {
+          "ancestorTitles": [
+            "Second test describe"
+          ],
+          "fullName": "Second test describe second test",
+          "title": "second test",
+          "status": "failed"
+        }
+      ],
+      "status": "failed"
+    }
+  ]
+}
