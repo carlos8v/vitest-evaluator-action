@@ -1,2 +1,7 @@
+.git/
 node_modules/
+
 result.json
+tests/result.json
+
+evaluator.js
