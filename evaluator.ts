@@ -1,16 +1,37 @@
 import { readFileSync, writeFileSync } from 'fs'
 
+type RequirementsFile = {
+  requirements: {
+    description: string
+  }[]
+}
+
+type EvaluationTestFile = {
+  testResults: {
+    assertionResults: {
+      ancestorTitles: string[]
+      fullName: string
+      status: 'passed' | 'failed'
+      title: string
+    }[]
+  }[]
+}
+
+type EvaluationOutput = {
+  [describe: string]: 'passed' | 'failed'
+}
+
 const CORRECT_ANSWER_GRADE = 1
 const WRONG_ANSWER_GRADE = 0
 
 const githubUsername = process.env.GITHUB_ACTOR || 'no_actor'
 const githubRepositoryName = process.env.GITHUB_REPOSITORY || 'no_repository'
 
-const jestOuputFile = readFileSync(process.argv[2], { encoding: 'utf8' })
-const { testResults } = JSON.parse(jestOuputFile)
+const testOuputFile = readFileSync(process.argv[2], { encoding: 'utf8' })
+const { testResults } = JSON.parse(testOuputFile) as EvaluationTestFile
 
 const requirementsFile = readFileSync(process.argv[3], { encoding: 'utf8' })
-const { requirements } = JSON.parse(requirementsFile)
+const { requirements } = JSON.parse(requirementsFile) as RequirementsFile
 
 const evaluationsByRequirements =
   testResults.map(({ assertionResults }) => (
@@ -27,7 +48,7 @@ const evaluationsByRequirements =
         return acc
       }
       return acc
-    }, {})
+    }, {} as EvaluationOutput)
 
 const evaluations =
     requirements.map(({ description }) => ({
