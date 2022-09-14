@@ -2,15 +2,17 @@ import { resolve } from 'path'
 import { readFileSync } from 'fs'
 import { execSync } from 'child_process'
 
+import { describe, it, expect } from 'vitest'
+
 describe('Test evaluator results', () => {
-  it('Should match correct result file', () => {
+  it('Should match correct result file', () => {    
     const entrypointFile = resolve(__dirname, '..', 'evaluator.ts')
 
-    const jestOutputFile = resolve(__dirname, 'jest-output.json')
+    const testOutputFile = resolve(__dirname, 'test-output.json')
     const requirementsFile = resolve(__dirname, 'requirements.json')
     const resultFile = resolve(__dirname, 'result.json')
 
-    execSync(`ts-node-dev --transpile-only ${entrypointFile} ${jestOutputFile} ${requirementsFile} ${resultFile}`)
+    execSync(`ts-node-dev --transpile-only ${entrypointFile} ${testOutputFile} ${requirementsFile} ${resultFile}`)
 
     const expectedResultJson = {
       github_username: 'no_actor',

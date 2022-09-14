@@ -1,5 +1,5 @@
-name: 'Jest evaluator'
-description: 'Jest evaluator action for javascript projects'
+name: 'Vitest evaluator'
+description: 'Vitest evaluator action for javascript projects'
 inputs:
   npm-start:
     description: 'Run npm start and waits to url before testing'
@@ -9,7 +9,7 @@ inputs:
     default: 'http://localhost:3000'
 outputs:
   result:
-    description: 'Jest unit tests JSON results'
+    description: 'Vitest unit tests JSON results'
 runs:
   using: 'docker'
   image: 'Dockerfile'
