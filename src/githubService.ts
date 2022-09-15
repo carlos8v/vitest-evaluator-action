@@ -8,7 +8,7 @@ export default (minPassingGrade: number = MIN_PERCENTAGE_TO_APPROVE) => ({
     const approvedRequirements = evaluations.reduce((acc, { grade }) => grade >= MIN_GRADE_TO_APPROVE ? acc + 1 : acc, 0)
     const gradePercentage = (approvedRequirements / evaluations.length) * 100
   
-    return `### Resultado
+    return `### Resultado do projeto
 | Item |   |
 |:-----|:-:|
 | Desempenho | ${gradePercentage >= minPassingGrade ? 'Suficiente' : 'Insuficiente'} |
@@ -16,7 +16,7 @@ export default (minPassingGrade: number = MIN_PERCENTAGE_TO_APPROVE) => ({
 
 
 ### Resultado por requisito
-| *Descrição* | *Avaliação* |
+| Descrição | Avaliação |
 |:------------|:-----------:|
 ${evaluations.reduce((acc, { description, grade }) => {
   const gradeResult = grade >= MIN_GRADE_TO_APPROVE ? ':heavy_check_mark:' : ':heavy_multiplication_x:'
