@@ -92,9 +92,9 @@ describe('Second test' () => {
 
 ### Action inputs
 
-| Name | Description | Required | Default |
+| Name | Description | Default | Required |
 | --- | --- | --- | --- |
-| `token` | Token that is used to create comments | :heavy_check_mark: | |
-| `npm-start` | Run npm start and waits to url before testing | | false |
-| `wait-for` | Url that npm start command waits for | | http://localhost:3000 |
-| `test-coverage` | Minimum porcentage of test coverage to pass successfully | | 70 |
+| `token` | Token that is used to create comments | - | :heavy_check_mark: |
+| `npm-start` | Run npm start and waits to url before testing | false | |
+| `wait-for` | Url that npm start command waits for | http://localhost:3000 | |
+| `test-coverage` | Minimum porcentage of test coverage to pass successfully | 70 | |
