@@ -21,7 +21,6 @@ runs:
   image: 'Dockerfile'
   env:
     TOKEN: ${{ inputs.token }}
-    PR_NUMBER: ${{ github.event.pull_request.number }}
     MIN_PERCENTAGE_TO_APPROVE: ${{ inputs.test-coverage }}
   args:
     - ${{ inputs.npm-start }}

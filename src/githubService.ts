@@ -25,12 +25,11 @@ ${evaluations.reduce((acc, { description, grade }) => {
   },
   createEvaluatorFeedback: async (feedback: string) => {
     const token = process.env.TOKEN!
-    const prNumber = process.env.PR_NUMBER!
     const octokit = github.getOctokit(token)
-    const { owner, repo } = github.context.issue
+    const { owner, repo, number } = github.context.issue
 
     await octokit.rest.issues.createComment({
-      issue_number: Number(prNumber),
+      issue_number: number,
       owner,
       repo,
       body: feedback
