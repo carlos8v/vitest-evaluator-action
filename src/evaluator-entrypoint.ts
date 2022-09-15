@@ -18,8 +18,7 @@ async function run() {
       githubRepositoryName,
       githubUsername,
       resultsFile: JSON.parse(testOuputFile) as EvaluationTestFile,
-      requirementsFile: JSON.parse(requirementsFile) as RequirementsFile,
-      resultPath: process.argv[4]
+      requirementsFile: JSON.parse(requirementsFile) as RequirementsFile
     })
 
     const feedbackMessage = githubService.createFeedbackMessage(evaluationResult)

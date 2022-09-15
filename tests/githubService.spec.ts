@@ -1,7 +1,7 @@
 import { resolve } from 'path'
 import { readFileSync } from 'fs'
 
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect } from 'vitest'
 
 import githubServiceFactory from '../src/githubService'
 
@@ -14,9 +14,11 @@ describe('Test github service feedback', () => {
     const feedbackMessage = githubService.createFeedbackMessage(result)
 
     expect(feedbackMessage).toContain('Insuficiente')
-    expect(feedbackMessage).toContain('50.00%')
+    expect(feedbackMessage).toContain('| Percentual de cumprimento de requisitos obrigatórios | 50.00% |')
+    expect(feedbackMessage).toContain('| Percentual de cumprimento de requisitos totais | 66.67% |')
     expect(feedbackMessage).toContain('First test describe')
     expect(feedbackMessage).toContain('Second test describe')
+    expect(feedbackMessage).toContain('Third test describe')
   })
 
   it('should pass if minimum pass grade is lower than evaluation result percentage', () => {
@@ -24,7 +26,8 @@ describe('Test github service feedback', () => {
     const feedbackMessage = githubService.createFeedbackMessage(result)
 
     expect(feedbackMessage).toContain('Suficiente')
-    expect(feedbackMessage).toContain('50.00%')
+    expect(feedbackMessage).toContain('| Percentual de cumprimento de requisitos obrigatórios | 50.00% |')
+    expect(feedbackMessage).toContain('| Percentual de cumprimento de requisitos totais | 66.67% |')
   })
 
   it('should fail if minimum pass grade is higher than evaluation result percentage', () => {
@@ -32,6 +35,7 @@ describe('Test github service feedback', () => {
     const feedbackMessage = githubService.createFeedbackMessage(result)
 
     expect(feedbackMessage).toContain('Insuficiente')
-    expect(feedbackMessage).toContain('50.00%')
+    expect(feedbackMessage).toContain('| Percentual de cumprimento de requisitos obrigatórios | 50.00% |')
+    expect(feedbackMessage).toContain('| Percentual de cumprimento de requisitos totais | 66.67% |')
   })
 })

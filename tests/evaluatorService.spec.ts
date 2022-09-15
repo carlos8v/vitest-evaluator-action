@@ -9,7 +9,6 @@ describe('Test evaluator service results', () => {
   it('Should match correct result file', () => {
     const testOutputFile = resolve(__dirname, 'test-output.json')
     const requirementsFile = resolve(__dirname, 'requirements.json')
-    const resultFile = resolve(__dirname, 'result.json')
 
     const evaluatorService = evaluatorServiceFactory()
 
@@ -17,8 +16,7 @@ describe('Test evaluator service results', () => {
       githubUsername: 'no_actor',
       githubRepositoryName: 'no_repository',
       resultsFile: JSON.parse(readFileSync(testOutputFile, { encoding: 'utf8' })) as EvaluationTestFile,
-      requirementsFile: JSON.parse(readFileSync(requirementsFile, { encoding: 'utf8' })) as RequirementsFile,
-      resultPath: resultFile
+      requirementsFile: JSON.parse(readFileSync(requirementsFile, { encoding: 'utf8' })) as RequirementsFile
     })
 
     const expectedResult = {
@@ -26,10 +24,16 @@ describe('Test evaluator service results', () => {
       github_repository_name: 'no_repository',
       evaluations: [{
         description: 'First test describe',
+        bonus: false,
         grade: 1,
       }, {
         description: 'Second test describe',
+        bonus: false,
         grade: 0,
+      }, {
+        description: 'Third test describe',
+        bonus: true,
+        grade: 1
       }]
     }
 

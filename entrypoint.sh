@@ -11,7 +11,7 @@ if $run_npm_start ; then
 fi
 
 npm test -- --reporter=json --watch=false --outputFile.json=evaluation.json
-node /evaluator-entrypoint.js evaluation.json .evaluator/requirements.json result.json
+node /evaluator-entrypoint.js evaluation.json .evaluator/requirements.json
 
 if [ $? != 0 ]; then
   echo "Execution error"

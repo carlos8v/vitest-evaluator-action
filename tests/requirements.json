@@ -1,10 +1,16 @@
 {
   "requirements": [
     {
-      "description": "First test describe"
+      "description": "First test describe",
+      "bonus": false
     },
     {
-      "description": "Second test describe"
+      "description": "Second test describe",
+      "bonus": false
+    },
+    {
+      "description": "Third test describe",
+      "bonus": true
     }
   ]
 }

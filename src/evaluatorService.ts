@@ -10,9 +10,10 @@ export default () => ({
     const { testResults } = params.resultsFile
     const { requirements } = params.requirementsFile
 
-    const requirementsWithId = requirements.map(({ description }) => ({
+    const requirementsWithId = requirements.map(({ description, bonus = false }) => ({
       id: hash(description),
-      description
+      description,
+      bonus
     }))
 
     const requirementsStatusById =
@@ -31,7 +32,8 @@ export default () => ({
         }, new Map())
 
     const evaluations =
-      requirementsWithId.map(({ id, description }) => ({
+      requirementsWithId.map(({ id, description, ...rest }) => ({
+        ...rest,
         description,
         grade: requirementsStatusById.get(id) === 'passed'
           ? CORRECT_ANSWER_GRADE

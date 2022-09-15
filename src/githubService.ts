@@ -1,18 +1,24 @@
 import * as github from '@actions/github'
 
-const MIN_PERCENTAGE_TO_APPROVE = Number(process.env.MIN_PERCENTAGE_TO_APPROVE || 70)
 const MIN_GRADE_TO_APPROVE = 1
+const MIN_PERCENTAGE_TO_APPROVE = Number(process.env.MIN_PERCENTAGE_TO_APPROVE || 70)
 
 export default (minPassingGrade: number = MIN_PERCENTAGE_TO_APPROVE) => ({
   createFeedbackMessage: ({ evaluations }: EvaluationResult) => {
-    const approvedRequirements = evaluations.reduce((acc, { grade }) => grade >= MIN_GRADE_TO_APPROVE ? acc + 1 : acc, 0)
-    const gradePercentage = (approvedRequirements / evaluations.length) * 100
+    const requiredRequirements = evaluations.filter(({ bonus = false }) => bonus === false)
+
+    const requiredApprovedRequirements = requiredRequirements.reduce((acc, { grade }) => grade >= MIN_GRADE_TO_APPROVE ? acc + 1 : acc, 0)
+    const allApprovedRequirements = evaluations.reduce((acc, { grade }) => grade >= MIN_GRADE_TO_APPROVE ? acc + 1 : acc, 0)
+
+    const requiredGradePercentage = (requiredApprovedRequirements / requiredRequirements.length) * 100
+    const allGradePercentage = (allApprovedRequirements / evaluations.length) * 100
   
     return `### Resultado do projeto
 | Item |   |
 |:-----|:-:|
-| Desempenho | ${gradePercentage >= minPassingGrade ? 'Suficiente' : 'Insuficiente'} |
-| Percentual de cumprimento de requisitos | ${gradePercentage.toFixed(2)}% |
+| Desempenho | ${requiredGradePercentage >= minPassingGrade ? 'Suficiente' : 'Insuficiente'} |
+| Percentual de cumprimento de requisitos obrigatórios | ${requiredGradePercentage.toFixed(2)}% |
+| Percentual de cumprimento de requisitos totais | ${allGradePercentage.toFixed(2)}% |
 
 
 ### Resultado por requisito

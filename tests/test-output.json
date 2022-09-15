@@ -41,6 +41,27 @@
         }
       ],
       "status": "failed"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "Third test describe"
+          ],
+          "fullName": "Third test describe first test",
+          "title": "first test",
+          "status": "passed"
+        },
+        {
+          "ancestorTitles": [
+            "Third test describe"
+          ],
+          "fullName": "Third test describe second test",
+          "title": "Third test",
+          "status": "passed"
+        }
+      ],
+      "status": "passed"
     }
   ]
 }

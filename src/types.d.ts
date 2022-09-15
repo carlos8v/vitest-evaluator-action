@@ -1,6 +1,7 @@
 type RequirementsFile = {
   requirements: {
     description: string
+    bonus?: boolean
   }[]
 }
 
@@ -20,7 +21,6 @@ type EvaluateParams = {
   githubRepositoryName: string
   resultsFile: EvaluationTestFile
   requirementsFile: RequirementsFile
-  resultPath: string
 }
 
 type EvaluationResult = {
@@ -28,6 +28,7 @@ type EvaluationResult = {
   github_repository_name: string
   evaluations: {
     description: string
+    bonus: boolean
     grade: number
   }[]
 }
