@@ -67,8 +67,9 @@ Folder structure should look like this:
 ```json
 {
   "requirements": [
-    { "description": "First test" },
-    { "description": "Second test" }
+    { "description": "First test", "bonus": false },
+    { "description": "Second test", "bonus": false },
+    { "description": "Third test", "bonus": true }
   ]
 }
 ```
@@ -77,14 +78,16 @@ Folder structure should look like this:
 ```js
 describe('First test' () => {
   it('unit test1', () => {})
-  it('unit test2', () => {})
-  it('unit test3', () => {})
+  it('unit test2', () => {})  
 })
 
 describe('Second test' () => {
   it('unit test1', () => {})
+})
+
+describe('Third test' () => {
+  it('unit test1', () => {})
   it('unit test2', () => {})
-  it('unit test3', () => {})
 })
 ```
 
