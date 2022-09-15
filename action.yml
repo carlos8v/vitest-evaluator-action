@@ -7,12 +7,21 @@ inputs:
   wait-for:
     description: 'Url that npm start command waits for'
     default: 'http://localhost:3000'
+  test-coverage:
+    decription: "Minimum porcentage of test coverage to pass successfully"
+    default: 70
+  token:
+    description: "GitHub token do projeto"
+    required: true
 outputs:
   result:
     description: 'Vitest unit tests JSON results'
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  env:
+    TOKEN: ${{ inputs.token }}
+    MIN_PERCENTAGE_TO_APPROVE: ${{ inputs.test-coverage }}
   args:
     - ${{ inputs.npm-start }}
     - ${{ inputs.wait-for }}

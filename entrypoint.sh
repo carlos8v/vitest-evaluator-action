@@ -11,11 +11,9 @@ if $run_npm_start ; then
 fi
 
 npm test -- --reporter=json --watch=false --outputFile.json=evaluation.json
-node /evaluator.js evaluation.json .evaluator/requirements.json result.json
+node /src/main.js evaluation.json .evaluator/requirements.json result.json
 
 if [ $? != 0 ]; then
   echo "Execution error"
   exit 1
 fi
-
-echo ::set-output name=result::`cat result.json | base64 -w 0`
