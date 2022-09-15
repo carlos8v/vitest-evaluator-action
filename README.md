@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Evaluator Step
-        uses: carlos8v/vitest-evaluator-action@v2.1.7
+        uses: carlos8v/vitest-evaluator-action@v2.2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 ```
@@ -40,7 +40,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Evaluator Step
-        uses: carlos8v/vitest-evaluator-action@v2.1.7
+        uses: carlos8v/vitest-evaluator-action@v2.2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           npm-start: true
