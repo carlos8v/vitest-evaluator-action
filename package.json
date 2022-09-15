@@ -5,7 +5,7 @@
   "main": "evaluator.js",
   "scripts": {
     "test": "vitest",
-    "build": "tsc src/*.ts"
+    "build": "tsc src/*.ts --outDir evaluator"
   },
   "repository": {
     "type": "git",

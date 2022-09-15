@@ -8,6 +8,6 @@ COPY entrypoint.sh .
 COPY src src
 
 RUN npm run build
-RUN rm src/*.ts -rf
+RUN rm src -rf
 
 ENTRYPOINT ["/app/entrypoint.sh"]
