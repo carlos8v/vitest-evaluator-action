@@ -12,6 +12,7 @@ FROM node:slim
 
 WORKDIR /
 COPY --from=builder --chown=node:node /build/evaluator/ .
+COPY --from=builder --chown=node:node /build/node_modules /node_modules
 COPY entrypoint.sh .
 
 ENTRYPOINT ["/entrypoint.sh"]
