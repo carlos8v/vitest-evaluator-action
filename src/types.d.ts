@@ -21,14 +21,18 @@ type EvaluateParams = {
   githubRepositoryName: string
   resultsFile: EvaluationTestFile
   requirementsFile: RequirementsFile
+  minPassingGrade?: number
 }
 
 type EvaluationResult = {
-  github_username: string
-  github_repository_name: string
+  githubUsername: string
+  githubRepositoryName: string
+  status: 'passed' | 'failed'
+  requiredPercentage: number
+  allPercentage: number
   evaluations: {
     description: string
     bonus: boolean
-    grade: number
+    grade: 'passed' | 'failed'
   }[]
 }

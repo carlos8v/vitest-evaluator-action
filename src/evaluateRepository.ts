@@ -22,9 +22,9 @@ async function run() {
     })
 
     const feedbackMessage = githubService.createFeedbackMessage(evaluationResult)
-    await githubService.createEvaluatorFeedback(feedbackMessage)
+    await githubService.createEvaluatorFeedback(feedbackMessage)    
 
-    process.exit(0)
+    process.exit(evaluationResult.status === 'passed' ? 0 : 1)
   } catch(err) {
     console.error(err)
     process.exit(1)

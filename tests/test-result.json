@@ -1,6 +1,9 @@
 {
-  "github_username": "no_actor",
-  "github_repository_name": "no_repository",
+  "githubUsername": "no_actor",
+  "githubRepositoryName": "no_repository",
+  "status": "failed",
+  "requiredPercentage": 50,
+  "allPercentage": 66.67,
   "evaluations": [
     {
       "description": "First test describe",

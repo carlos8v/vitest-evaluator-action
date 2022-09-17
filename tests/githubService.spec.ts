@@ -22,8 +22,13 @@ describe('Test github service feedback', () => {
   })
 
   it('should pass if minimum pass grade is lower than evaluation result percentage', () => {
-    const githubService = githubServiceFactory(50)
-    const feedbackMessage = githubService.createFeedbackMessage(result)
+    const passedResult: EvaluationResult = {
+      ...result,
+      status: 'passed'
+    }
+
+    const githubService = githubServiceFactory()
+    const feedbackMessage = githubService.createFeedbackMessage(passedResult)
 
     expect(feedbackMessage).toContain('Suficiente')
     expect(feedbackMessage).toContain('| Percentual de cumprimento de requisitos obrigatórios | 50.00% |')
