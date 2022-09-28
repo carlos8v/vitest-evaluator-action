@@ -1,6 +1,24 @@
-import * as github from '@actions/github'
+import { getOctokit, context } from '@actions/github'
 
 export default () => ({
+  hasInvalidChanges: async (protectedFiles: string[]) => {
+    const token = process.env.TOKEN!
+    const octokit = getOctokit(token)
+    const { owner, repo } = context.issue
+
+    const base = process.env.DEFAULT_BRANCH!
+    const head = process.env.COMMIT_HASH!
+
+    const response = await octokit.rest.repos.compareCommitsWithBasehead({
+      owner,
+      repo,
+      basehead: `${base}...${head}`
+    })
+
+    return response.data.files
+      ?.filter((file) => file.status === 'modified')
+      ?.some((file) => protectedFiles.includes(file.filename)) || false
+  },
   createFeedbackMessage: (params: EvaluationResult) => {
     const { status, requiredPercentage, allPercentage, evaluations } = params
 
@@ -21,8 +39,8 @@ ${evaluations.reduce((acc, { description, grade }) => {
   },
   createEvaluatorFeedback: async (feedback: string) => {
     const token = process.env.TOKEN!
-    const octokit = github.getOctokit(token)
-    const { owner, repo, number } = github.context.issue
+    const octokit = getOctokit(token)
+    const { owner, repo, number } = context.issue
 
     await octokit.rest.issues.createComment({
       issue_number: number,

@@ -76,16 +76,17 @@ Folder structure should look like this:
 
 **test.spec.js**:
 ```js
-describe('First test' () => {
+describe('First test', () => {
   it('unit test1', () => {})
-  it('unit test2', () => {})  
+  it('unit test2', () => {})
 })
 
-describe('Second test' () => {
+describe('Second test', () => {
   it('unit test1', () => {})
+  it('unit test2', () => {})
 })
 
-describe('Third test' () => {
+describe('Third test', () => {
   it('unit test1', () => {})
   it('unit test2', () => {})
 })

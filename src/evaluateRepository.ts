@@ -1,5 +1,7 @@
 import { readFileSync } from 'fs'
 
+import { setFailed } from '@actions/core'
+
 const githubUsername = process.env.GITHUB_ACTOR || 'no_actor'
 const githubRepositoryName = process.env.GITHUB_REPOSITORY || 'no_repository'
 
@@ -10,10 +12,15 @@ import evaluatorServiceFactory from './evaluatorService'
 import githubServiceFactory from './githubService'
 
 async function run() {
-  const evaluatorService = evaluatorServiceFactory()
+   const evaluatorService = evaluatorServiceFactory()
   const githubService = githubServiceFactory()
 
   try {
+    const protectedFiles = ['.github/workflows/test.yml', '.evaluator/requirements.json']
+    if (await githubService.hasInvalidChanges(protectedFiles)) {
+      throw new Error('Protected files cannot be modified')
+    }
+
     const evaluationResult = evaluatorService.evaluateRepository({
       githubRepositoryName,
       githubUsername,
@@ -25,8 +32,8 @@ async function run() {
     await githubService.createEvaluatorFeedback(feedbackMessage)    
 
     process.exit(evaluationResult.status === 'passed' ? 0 : 1)
-  } catch(err) {
-    console.error(err)
+  } catch(err: Error | any) {
+    setFailed(err?.message || 'Action failed with internal error')
     process.exit(1)
   }
 }

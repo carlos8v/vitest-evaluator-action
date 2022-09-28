@@ -11,7 +11,7 @@ inputs:
     decription: "Minimum porcentage of test coverage to pass successfully"
     default: 70
   token:
-    description: "GitHub token do projeto"
+    description: "GitHub token"
     required: true
 outputs:
   result:
@@ -22,6 +22,8 @@ runs:
   env:
     TOKEN: ${{ inputs.token }}
     MIN_PERCENTAGE_TO_APPROVE: ${{ inputs.test-coverage }}
+    COMMIT_HASH: ${{ github.event.pull_request.head.sha }}
+    DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
   args:
     - ${{ inputs.npm-start }}
     - ${{ inputs.wait-for }}
