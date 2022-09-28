@@ -1,6 +1,6 @@
 {
   "name": "vitest-evaluator-action",
-  "version": "1.2.0",
+  "version": "2.4.0",
   "description": "Github action to test javascript projects",
   "main": "evaluator.js",
   "scripts": {
