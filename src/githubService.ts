@@ -1,3 +1,4 @@
+import { info } from '@actions/core'
 import { getOctokit, context } from '@actions/github'
 
 export default () => ({
@@ -5,9 +6,10 @@ export default () => ({
     const token = process.env.TOKEN!
     const octokit = getOctokit(token)
     const { owner, repo } = context.issue
+    info(`JSON.stringify(context.payload), ${context.ref}, ${context.sha}`)
 
-    const base = process.env.DEFAULT_BRANCH!
-    const head = process.env.COMMIT_HASH!
+    const base = context.ref
+    const head = context.sha
 
     const response = await octokit.rest.repos.compareCommitsWithBasehead({
       owner,
