@@ -18,6 +18,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
       - name: Evaluator Step
         uses: carlos8v/vitest-evaluator-action@v2.4
         with:
@@ -38,6 +42,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
 
       - name: Evaluator Step
         uses: carlos8v/vitest-evaluator-action@v2.4
