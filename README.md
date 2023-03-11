@@ -13,6 +13,9 @@ on: pull_request
 jobs:
   example_test_pr:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read # (Optional) Use if your repo is private
+      pull-requests: write # (Required) Permission to comment on PR
     name: An example job to test a PR
     steps:
       - name: Checkout
@@ -39,6 +42,9 @@ jobs:
   example_test_pr:
     runs-on: ubuntu-latest
     name: An example job to test a PR
+    permissions:
+      contents: read # (Optional) Use if your repo is private
+      pull-requests: write # (Required) Permission to comment on PR
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -62,11 +68,11 @@ Folder structure should look like this:
 
 ```
 .
-├── .github
-| └── workflows
-|   └── test.yml
 ├── .evaluator
-| └── requirements.json
+│ └── requirements.json
+├── .github
+│ └── workflows
+│   └── test.yml
 └── src
   └── ...
 ```
